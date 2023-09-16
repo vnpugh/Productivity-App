@@ -29,6 +29,10 @@ public class Task {
     public Task() {
     }
 
+    @ManyToOne
+    @JoinColumn(name = "task_list_id")
+    private TaskList taskList;
+
     public Task(String title, String description, String priority, String dueDate, boolean status, String notes) {
         this.title = title;
         this.description = description;

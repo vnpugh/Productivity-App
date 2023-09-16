@@ -3,6 +3,8 @@ package com.example.todoapp.Models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "users")
@@ -20,6 +22,9 @@ public class User {
 
     public User() {
     }
+
+    @OneToMany(mappedBy = "user")
+    private List<TaskList> taskLists;
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
