@@ -10,15 +10,13 @@ public class User {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Column
     private String firstName;
 
     @Column
     private String lastName;
-
-
 
     public User() {
     }
@@ -28,8 +26,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -48,14 +50,10 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
