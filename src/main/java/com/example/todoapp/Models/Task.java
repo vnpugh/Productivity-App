@@ -1,7 +1,11 @@
 package com.example.todoapp.Models;
 
-
+import com.example.todoapp.TaskPriority;
+import com.example.todoapp.TaskStatus;
 import jakarta.persistence.*;
+
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tasks")
@@ -15,33 +19,35 @@ public class Task {
     private String title;
     @Column
     private String description;
+    @Column
+    private LocalDate dueDate;
 
-    @Column
-    private String priority;
-    @Column
-    private String dueDate;
-    @Column
-    private boolean status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "task_priority", nullable = false)
+    private TaskPriority taskPriority;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "task_status", nullable = false)
+    private TaskStatus taskStatus;
 
     @Column
     private String notes;
 
     public Task() {
     }
-
     @ManyToOne
     @JoinColumn(name = "task_list_id")
     private TaskList taskList;
 
-    public Task(String title, String description, String priority, String dueDate, boolean status, String notes) {
+    public Task(String title, String description, LocalDate dueDate, TaskPriority taskPriority,
+                TaskStatus taskStatus, String notes) {
         this.title = title;
         this.description = description;
-        this.priority = priority;
         this.dueDate = dueDate;
-        this.status = status;
+        this.taskPriority = taskPriority;
+        this.taskStatus = taskStatus;
         this.notes = notes;
     }
-
 
     public Long getTaskId() {
         return taskId;
@@ -67,28 +73,28 @@ public class Task {
         this.description = description;
     }
 
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public String getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
-    public boolean isStatus() {
-        return status;
+    public TaskPriority getTaskPriority() {
+        return taskPriority;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setTaskPriority(TaskPriority taskPriority) {
+        this.taskPriority = taskPriority;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
     }
 
     public String getNotes() {
@@ -99,16 +105,26 @@ public class Task {
         this.notes = notes;
     }
 
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "taskId=" + taskId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", priority='" + priority + '\'' +
-                ", dueDate='" + dueDate + '\'' +
-                ", status=" + status +
+                ", dueDate=" + dueDate +
+                ", taskPriority=" + taskPriority +
+                ", taskStatus=" + taskStatus +
                 ", notes='" + notes + '\'' +
+                ", taskList=" + taskList +
                 '}';
     }
+
 }
