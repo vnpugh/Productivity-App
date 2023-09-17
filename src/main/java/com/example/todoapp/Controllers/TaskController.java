@@ -14,16 +14,32 @@ public class TaskController {
 
     private TaskService taskService;
 
+    /**
+     * Sets the TaskService instance for this TaskManager.
+     * This method is used for dependency injection to provide the necessary service implementation.
+     * @param taskService The TaskService instance to be injected.
+     */
     @Autowired
     public void setTaskService(TaskService taskService) {
         this.taskService = taskService;
     }
 
+
+    /**
+     * GET: http://localhost:8080/api/tasks
+     * @return List of Tasks for a specific user
+     */
     @GetMapping(path = "/tasks")
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
 
+
+    /**
+     * GET: http://localhost:8080/api/tasks/1
+     * @param taskId
+     * @return
+     */
     @GetMapping(path = "/tasks/{taskId}")
     public Task getTaskById(@PathVariable Long taskId) {
         return taskService.getTaskById(taskId);

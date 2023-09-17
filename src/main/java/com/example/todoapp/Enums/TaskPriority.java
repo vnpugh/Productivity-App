@@ -1,6 +1,4 @@
-package com.example.todoapp;
-
-
+package com.example.todoapp.Enums;
 
 
 

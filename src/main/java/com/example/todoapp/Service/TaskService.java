@@ -1,16 +1,16 @@
 package com.example.todoapp.Service;
 
-
+import com.example.todoapp.Enums.TaskStatus;
 import com.example.todoapp.Models.Task;
 import com.example.todoapp.Repository.TaskListRepository;
 import com.example.todoapp.Repository.TaskRepository;
-import com.example.todoapp.TaskPriority;
+import com.example.todoapp.Enums.TaskPriority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
+
 
 @Service
 public class TaskService {
@@ -68,7 +68,6 @@ public class TaskService {
 
    /**
     * CREATE TASK, creates a task for a specific user.
-    *
     * @param taskObject taskObject
     * @param taskId
     * @return a Task object
@@ -76,10 +75,9 @@ public class TaskService {
     public Task createTask(Task taskObject, Long taskId) {
         taskObject.setTaskList(taskListRepository.findById(taskObject.getTaskList().getTaskListId()).orElseThrow());
         taskObject.setUser(userService.getCurrentUser());
-
         // Set the default priority and status for the task
-        taskObject.setPriority(TaskPriority.LOW); // Set the default priority here
-        taskObject.setStatus(TaskStatus.NOT_STARTED); // Set the default status here
+        taskObject.setTaskPriority(TaskPriority.LOW); // Set the default priority here
+        taskObject.setTaskStatus(TaskStatus.NOT_STARTED); // Set the default status here
 
         // Set the default due date for the task
         if (taskObject.getDueDate() == null) {

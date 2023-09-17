@@ -1,6 +1,4 @@
-package com.example.todoapp;
-
-
+package com.example.todoapp.Enums;
 
 
 /**
@@ -8,4 +6,9 @@ package com.example.todoapp;
  * These are special data types. They are not like classes because objects can't be created.
  */
 public enum TaskStatus {
+    NOT_STARTED,
+    IN_PROGRESS,
+    COMPLETED,
+    CANCELLED,
+    URGENT
 }

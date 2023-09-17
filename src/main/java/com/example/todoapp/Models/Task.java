@@ -1,7 +1,7 @@
 package com.example.todoapp.Models;
 
-import com.example.todoapp.TaskPriority;
-import com.example.todoapp.TaskStatus;
+import com.example.todoapp.Enums.TaskPriority;
+import com.example.todoapp.Enums.TaskStatus;
 import jakarta.persistence.*;
 
 
@@ -126,5 +126,10 @@ public class Task {
                 ", taskList=" + taskList +
                 '}';
     }
+
+
+    public void setUser(User currentUser) {
+    }
+
 
 }
